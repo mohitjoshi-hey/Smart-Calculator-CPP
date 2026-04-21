@@ -44,6 +44,17 @@ double result(double num1, char optr, double num2)
     }
 }
 
+void do_single_operation(stack<double> &nums, stack<char> &optr){
+    double num2 = nums.top();
+    nums.pop();
+    double num1 = nums.top();
+    nums.pop();
+    char symbol = optr.top();
+    optr.pop();
+    double partial_res = result(num1, symbol, num2);
+    nums.push(partial_res);
+}
+
 double solve_expression(string expression)
 {
     stack<double> nums;
@@ -65,20 +76,13 @@ double solve_expression(string expression)
             else
             {
                 while (!optr.empty() && optr.top() != '(' && (precedence(optr.top()) >= precedence(elem)))
-                {
-                    double num2 = nums.top();
-                    nums.pop();
-                    double num1 = nums.top();
-                    nums.pop();
-                    char symbol = optr.top();
-                    optr.pop();
-                    double partial_res = result(num1, symbol, num2);
-                    nums.push(partial_res);
+                { // Once you are outside the bracket then this thing will take place.
+                    do_single_operation(nums, optr);
                 }
                 optr.push(elem);
             }
         }
-        else if (elem == '(' || elem == ')')
+        else if (elem == '(' || elem == ')') // Jab tak bracket ke andar ho tab tak aapka ye chlega
         {
             if (elem == '(')
             {
@@ -88,14 +92,7 @@ double solve_expression(string expression)
             {
                 while (!optr.empty() && optr.top() != '(')
                 {
-                    double num2 = nums.top();
-                    nums.pop();
-                    double num1 = nums.top();
-                    nums.pop();
-                    char symbol = optr.top();
-                    optr.pop();
-                    double partial_res = result(num1, symbol, num2);
-                    nums.push(partial_res);
+                    do_single_operation(nums, optr);
                 }
                 optr.pop();
             }
@@ -117,16 +114,9 @@ double solve_expression(string expression)
         }
     }
 
-    while (!optr.empty())
+    while (!optr.empty()) // If the expression is all parsed now and the optr stack is still unempty then do this thing.
     {
-        double num2 = nums.top();
-        nums.pop();
-        double num1 = nums.top();
-        nums.pop();
-        char symbol = optr.top();
-        optr.pop();
-        double partial_res = result(num1, symbol, num2);
-        nums.push(partial_res);
+        do_single_operation(nums, optr);
     }
 
     return nums.top();
