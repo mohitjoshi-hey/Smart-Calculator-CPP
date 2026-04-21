@@ -1,6 +1,6 @@
 # Smart Calculator (C++)
 
-A command-line based smart calculator built using C++ that evaluates mathematical expressions using stack-based parsing, operator precedence, and parentheses handling.
+A command-line based smart calculator built using C++ that evaluates mathematical expressions using stack-based parsing, operator precedence, parentheses handling, and decimal support.
 
 This project demonstrates core programming concepts such as data structures, expression evaluation, and structured program design.
 
@@ -11,6 +11,8 @@ This project demonstrates core programming concepts such as data structures, exp
 * Supports arithmetic operations: +, -, *, /
 * Evaluates full expressions with operator precedence (e.g., `2 + 3 * 4`)
 * Supports parentheses for grouped evaluation (e.g., `2 * (3 + 4)`)
+* Supports decimal (floating-point) calculations (e.g., `4.5 + 2.3`)
+* Handles multi-digit numbers
 * Stack-based expression parsing (infix evaluation)
 * Exception handling (division by zero, invalid operator)
 * Interactive command-line interface
@@ -25,6 +27,7 @@ This project demonstrates core programming concepts such as data structures, exp
 * Expression parsing and evaluation
 * Operator precedence handling
 * Parentheses-based control flow
+* Floating-point number parsing
 * String manipulation
 * Exception handling
 * STL containers (`vector`, `stack`, `string`)
@@ -34,15 +37,15 @@ This project demonstrates core programming concepts such as data structures, exp
 
 ## Current Limitations
 
-* Decimal numbers are not supported yet
-* Unary operators (e.g., `-5`) are not handled
+* Unary operators (e.g., `-5`, `+3`) are not handled
+* No support for advanced operations (power, trigonometry, etc.)
 
 ---
 
 ## Future Improvements
 
-* Add support for floating-point (decimal) calculations
 * Handle negative numbers and unary operations
+* Add support for exponentiation (`^`)
 * Improve input validation and error handling
 * Build a GUI or web-based version
 
