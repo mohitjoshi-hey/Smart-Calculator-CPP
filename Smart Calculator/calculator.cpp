@@ -54,7 +54,7 @@ double solve_expression(string expression)
 
         if (elem == '+' || elem == '-' || elem == '*' || elem == '/')
         {
-            if (optr.empty())
+            if (optr.empty() || optr.top() == '(')
             {
                 optr.push(elem);
             }
@@ -64,7 +64,7 @@ double solve_expression(string expression)
             }
             else
             {
-                while (!optr.empty() && (precedence(optr.top()) >= precedence(elem)))
+                while (!optr.empty() && optr.top() != '(' && (precedence(optr.top()) >= precedence(elem)))
                 {
                     double num2 = nums.top();
                     nums.pop();
@@ -76,6 +76,28 @@ double solve_expression(string expression)
                     nums.push(partial_res);
                 }
                 optr.push(elem);
+            }
+        }
+        else if (elem == '(' || elem == ')')
+        {
+            if (elem == '(')
+            {
+                optr.push(elem);
+            }
+            else
+            {
+                while (!optr.empty() && optr.top() != '(')
+                {
+                    double num2 = nums.top();
+                    nums.pop();
+                    double num1 = nums.top();
+                    nums.pop();
+                    char symbol = optr.top();
+                    optr.pop();
+                    double partial_res = result(num1, symbol, num2);
+                    nums.push(partial_res);
+                }
+                optr.pop();
             }
         }
         else if (elem == ' ')
