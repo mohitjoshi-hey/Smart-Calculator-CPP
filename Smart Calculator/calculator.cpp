@@ -5,6 +5,7 @@
 #include <sstream>
 #include <stack>
 #include <limits>
+#include <cmath>
 using namespace std;
 
 int precedence(char optr)
@@ -44,7 +45,8 @@ double result(double num1, char optr, double num2)
     }
 }
 
-void do_single_operation(stack<double> &nums, stack<char> &optr){
+void do_single_operation(stack<double> &nums, stack<char> &optr)
+{
     double num2 = nums.top();
     nums.pop();
     double num1 = nums.top();
@@ -109,6 +111,19 @@ double solve_expression(string expression)
                 current_num = 10 * current_num + (expression[i] - '0');
                 i++;
             }
+            if (i < expression.size() && expression[i] == '.') // Checking for decimal values.
+            {
+                double decimal_num = 0;
+                int k = 0;
+                i++;
+                while (i < expression.size() && (expression[i] >= '0' && expression[i] <= '9'))
+                {
+                    decimal_num = decimal_num * 10 + (expression[i] - '0');
+                    i++, k++;
+                }
+                current_num += decimal_num / pow(10, k);
+            }
+
             i--; // When the loop will exit then the i value will get increased by one which will skip one character for the outer loop.
             nums.push(current_num);
         }
