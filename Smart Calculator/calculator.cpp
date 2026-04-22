@@ -61,9 +61,31 @@ double solve_expression(string expression)
 {
     stack<double> nums;
     stack<char> optr;
+    int sign = 1;
+
     for (int i = 0; i < expression.size(); i++)
     {
         char elem = expression[i];
+
+        int j = i - 1;
+        char prev_elem = '\0';
+        while(j >= 0 && expression[j] == ' '){ // Searching for an operator which exist just before the unary operator: if YES, then its a unary & if NO then its not
+            j--;
+        }
+
+        if(j >= 0){
+            prev_elem = expression[j];
+        }
+
+        if((elem == '-' || elem == '+') &&
+            (i == 0 || j < 0 || prev_elem == '(' ||
+            prev_elem == '+' || prev_elem == '-' ||
+            prev_elem == '*' || prev_elem == '/')){
+
+                sign = (elem == '+' ? 1 : -1);
+                continue;
+        }
+
 
         if (elem == '+' || elem == '-' || elem == '*' || elem == '/')
         {
@@ -125,7 +147,9 @@ double solve_expression(string expression)
             }
 
             i--; // When the loop will exit then the i value will get increased by one which will skip one character for the outer loop.
+            current_num *= sign;
             nums.push(current_num);
+            sign = 1;
         }
     }
 
