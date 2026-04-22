@@ -1,24 +1,34 @@
 # Smart Calculator (C++)
 
-A command-line based smart calculator built using C++ that evaluates mathematical expressions using stack-based parsing, operator precedence, parentheses handling, decimal support, and unary operator handling.
+A command-line based smart calculator built using C++ that evaluates mathematical expressions using stack-based parsing, operator precedence, parentheses, decimal handling, and advanced unary operator support.
 
-This project demonstrates core programming concepts such as data structures, expression parsing, and expression evaluation similar to real interpreters.
+This project implements a mini expression evaluation engine similar to the core logic used in interpreters and compilers.
 
 ---
 
 ## Features
 
 * Supports arithmetic operations: +, -, *, /
-* Evaluates full expressions with operator precedence (e.g., `2 + 3 * 4`)
-* Supports parentheses for grouped evaluation (e.g., `2 * (3 + 4)`)
-* Supports decimal (floating-point) calculations (e.g., `4.5 + 2.3`)
+* Evaluates full expressions with operator precedence
+  Example: `2 + 3 * 4`
+* Supports parentheses for grouped evaluation
+  Example: `2 * (3 + 4)`
+* Supports decimal (floating-point) calculations
+  Example: `4.5 + 2.3`
 * Handles multi-digit numbers
-* Supports unary operators (`+`, `-`) including chained unary expressions:
+* Supports unary operators (`+`, `-`)
+* Supports chained unary expressions:
 
   * `-5`
-  * `+3`
+  * `--5`
+  * `+-3`
+  * `+++5`
+* Handles complex nested expressions with correct evaluation
 * Stack-based expression parsing (infix evaluation)
-* Exception handling (division by zero, invalid operator)
+* Exception handling:
+
+  * Division by zero
+  * Invalid operator detection
 * Interactive command-line interface
 * History tracking with indexing
 * Option to clear history
@@ -31,11 +41,15 @@ This project demonstrates core programming concepts such as data structures, exp
 * Expression parsing and evaluation
 * Operator precedence handling
 * Parentheses-based control flow
-* Unary operator handling
+* Unary operator handling (single and chained)
 * Floating-point number parsing
 * String manipulation
 * Exception handling
-* STL containers (`vector`, `stack`, `string`)
+* STL containers:
+
+  * `vector`
+  * `stack`
+  * `string`
 * String streams (`ostringstream`)
 
 ---
@@ -45,22 +59,41 @@ This project demonstrates core programming concepts such as data structures, exp
 Input:
 
 ```
-+2 * (-3 + 4.5)
++++4 - +++5 * -+-8 + (--4 * 3)
 ```
 
 Output:
 
 ```
-15.00
+-24.00
 ```
+
+---
+
+## How It Works
+
+The calculator processes expressions using two stacks:
+
+* **Operand stack (`nums`)** for numbers
+* **Operator stack (`optr`)** for operators
+
+### Core Logic:
+
+1. Parse the expression character by character
+2. Handle numbers (including decimals)
+3. Detect unary operators based on context
+4. Apply operator precedence rules
+5. Evaluate expressions using stack operations
+6. Handle parentheses by controlled evaluation
 
 ---
 
 ## Current Limitations
 
-* No support for advanced operators (e.g., exponent `^`)
+* No support for exponent operator (`^`)
 * No support for mathematical functions (e.g., `sin`, `log`)
-* Limited input validation for malformed expressions
+* Limited validation for malformed expressions
+* No support for variables
 
 ---
 
@@ -69,8 +102,9 @@ Output:
 * Add exponentiation operator (`^`)
 * Support mathematical functions (sin, cos, log, etc.)
 * Improve input validation and error handling
+* Add support for variables and expressions
 * Build a GUI or web-based version
-* Add keyboard-friendly expression editing
+* Add expression editing and better CLI UX
 
 ---
 
