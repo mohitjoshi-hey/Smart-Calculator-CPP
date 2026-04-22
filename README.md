@@ -1,8 +1,8 @@
 # Smart Calculator (C++)
 
-A command-line based smart calculator built using C++ that evaluates mathematical expressions using stack-based parsing, operator precedence, parentheses handling, and decimal support.
+A command-line based smart calculator built using C++ that evaluates mathematical expressions using stack-based parsing, operator precedence, parentheses handling, decimal support, and unary operator handling.
 
-This project demonstrates core programming concepts such as data structures, expression evaluation, and structured program design.
+This project demonstrates core programming concepts such as data structures, expression parsing, and expression evaluation similar to real interpreters.
 
 ---
 
@@ -13,6 +13,10 @@ This project demonstrates core programming concepts such as data structures, exp
 * Supports parentheses for grouped evaluation (e.g., `2 * (3 + 4)`)
 * Supports decimal (floating-point) calculations (e.g., `4.5 + 2.3`)
 * Handles multi-digit numbers
+* Supports unary operators (`+`, `-`) including chained unary expressions:
+
+  * `-5`
+  * `+3`
 * Stack-based expression parsing (infix evaluation)
 * Exception handling (division by zero, invalid operator)
 * Interactive command-line interface
@@ -27,6 +31,7 @@ This project demonstrates core programming concepts such as data structures, exp
 * Expression parsing and evaluation
 * Operator precedence handling
 * Parentheses-based control flow
+* Unary operator handling
 * Floating-point number parsing
 * String manipulation
 * Exception handling
@@ -35,19 +40,37 @@ This project demonstrates core programming concepts such as data structures, exp
 
 ---
 
+## Example
+
+Input:
+
+```
++2 * (-3 + 4.5)
+```
+
+Output:
+
+```
+15.00
+```
+
+---
+
 ## Current Limitations
 
-* Unary operators (e.g., `-5`, `+3`) are not handled
-* No support for advanced operations (power, trigonometry, etc.)
+* No support for advanced operators (e.g., exponent `^`)
+* No support for mathematical functions (e.g., `sin`, `log`)
+* Limited input validation for malformed expressions
 
 ---
 
 ## Future Improvements
 
-* Handle negative numbers and unary operations
-* Add support for exponentiation (`^`)
+* Add exponentiation operator (`^`)
+* Support mathematical functions (sin, cos, log, etc.)
 * Improve input validation and error handling
 * Build a GUI or web-based version
+* Add keyboard-friendly expression editing
 
 ---
 
