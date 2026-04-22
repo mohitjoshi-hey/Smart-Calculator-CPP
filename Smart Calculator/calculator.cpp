@@ -18,6 +18,10 @@ int precedence(char optr)
     {
         return 2;
     }
+    else if (optr == '^')
+    {
+        return 3;
+    }
     else
     {
         throw "Invalid operator\n";
@@ -40,6 +44,11 @@ double result(double num1, char optr, double num2)
             throw "Can't divide by 0\n";
         }
         return num1 / num2;
+    case '^':
+        if(num1 < 0 && floor(num2) != num2){ // Throw error if num2 is not an integer.
+            throw "Output can't be Imaginary\n";
+        }
+        return pow(num1, num2);
     default:
         throw "Invalid Operator\n";
     }
@@ -80,14 +89,14 @@ double solve_expression(string expression)
         if((elem == '-' || elem == '+') &&
             (i == 0 || j < 0 || prev_elem == '(' ||
             prev_elem == '+' || prev_elem == '-' ||
-            prev_elem == '*' || prev_elem == '/')){
+            prev_elem == '*' || prev_elem == '/' || prev_elem == '^')){
 
                 sign *= (elem == '+' ? 1 : -1); // For multiunary operation like --- then sign at final becomes = -1 an then after finding a num it will get multiplied to it and later it gets equal to 1.
                 continue;
         }
 
 
-        if (elem == '+' || elem == '-' || elem == '*' || elem == '/')
+        if (elem == '+' || elem == '-' || elem == '*' || elem == '/' || elem == '^')
         {
             if (optr.empty() || optr.top() == '(')
             {
@@ -99,7 +108,9 @@ double solve_expression(string expression)
             }
             else
             {
-                while (!optr.empty() && optr.top() != '(' && (precedence(optr.top()) >= precedence(elem)))
+                while (!optr.empty() && optr.top() != '(' &&
+                      ((precedence(optr.top()) > precedence(elem)) ||
+                      (precedence(optr.top()) == precedence(elem) && elem != '^'))) // Because exponent has a right associativity i.e. 3^2^2 = 3^4 = 81 which is unlike other operators like * etc.
                 { // Once you are outside the bracket then this thing will take place.
                     do_single_operation(nums, optr);
                 }
