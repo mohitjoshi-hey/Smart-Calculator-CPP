@@ -82,7 +82,7 @@ double solve_expression(string expression)
             prev_elem == '+' || prev_elem == '-' ||
             prev_elem == '*' || prev_elem == '/')){
 
-                sign = (elem == '+' ? 1 : -1);
+                sign *= (elem == '+' ? 1 : -1); // For multiunary operation like --- then sign at final becomes = -1 an then after finding a num it will get multiplied to it and later it gets equal to 1.
                 continue;
         }
 
