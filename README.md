@@ -16,6 +16,8 @@ This project implements a mini expression evaluation engine similar to the core 
 * Supports decimal (floating-point) calculations
   Example: `4.5 + 2.3`
 * Handles multi-digit numbers
+* Supports exponent calculations
+  Example: `4.5 ^ 2.3 ^ 3`
 * Supports unary operators (`+`, `-`)
 * Supports chained unary expressions:
 
@@ -29,6 +31,7 @@ This project implements a mini expression evaluation engine similar to the core 
 
   * Division by zero
   * Invalid operator detection
+  * Root or non-integer power of a negative number
 * Interactive command-line interface
 * History tracking with indexing
 * Option to clear history
@@ -90,7 +93,6 @@ The calculator processes expressions using two stacks:
 
 ## Current Limitations
 
-* No support for exponent operator (`^`)
 * No support for mathematical functions (e.g., `sin`, `log`)
 * Limited validation for malformed expressions
 * No support for variables
@@ -99,7 +101,6 @@ The calculator processes expressions using two stacks:
 
 ## Future Improvements
 
-* Add exponentiation operator (`^`)
 * Support mathematical functions (sin, cos, log, etc.)
 * Improve input validation and error handling
 * Add support for variables and expressions
